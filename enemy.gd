@@ -1,0 +1,26 @@
+extends CharacterBody2D
+
+const SPEED = 100.0
+var direction = 1 # 1 is Right, -1 is Left
+
+func _physics_process(delta):
+	# applies Gravity
+	if not is_on_floor():
+		velocity.y += 980.0 * delta
+
+	# check for walls or ledges to flip direction
+	if is_on_wall():
+		direction *= -1
+		
+	# move
+	velocity.x = direction * SPEED
+	move_and_slide()
+
+# this function will run when the Player touches the Hitbox
+func _on_hitbox_body_entered(body):
+	if body.name == "Player":
+		print("Caught by Antivirus!")
+		call_deferred("reload_level")
+
+func reload_level():
+	get_tree().reload_current_scene()
