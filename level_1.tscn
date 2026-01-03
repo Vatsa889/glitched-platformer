@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://cox071lcryca8"]
+
+[ext_resource type="PackedScene" uid="uid://dwehk8bwsy86i" path="res://player.tscn" id="1_3hls8"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hbghi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hn12h"]
+size = Vector2(1157, 92)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3hls8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hbghi"]
+size = Vector2(20, 328)
+
+[node name="Level1" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_3hls8")]
+position = Vector2(-86, 4)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-86, 4)
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(1.4999847, 299)
+scale = Vector2(1157, 92)
+texture = SubResource("PlaceholderTexture2D_hbghi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1.5, 299)
+shape = SubResource("RectangleShape2D_hn12h")
+
+[node name="GlitchWall" type="StaticBody2D" parent="."]
+position = Vector2(-66, 111)
+collision_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="GlitchWall"]
+modulate = Color(0.20301872, 0.52281815, 0.239726, 1)
+position = Vector2(363, -15.981659)
+scale = Vector2(-20.045853, 327.21585)
+texture = SubResource("PlaceholderTexture2D_3hls8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GlitchWall"]
+position = Vector2(363, -16)
+shape = SubResource("RectangleShape2D_hbghi")
