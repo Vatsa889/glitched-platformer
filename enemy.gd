@@ -16,10 +16,10 @@ func _physics_process(delta):
 	velocity.x = direction * SPEED
 	move_and_slide()
 
-# this function will run when the Player touches the Hitbox
+## this function will run when the Player touches the Hitbox
 func _on_hitbox_body_entered(body):
 	if body.name == "Player":
-		print("Caught by Antivirus!")
+		print("antivirus killed me in cold blood")
 		call_deferred("reload_level")
 
 func reload_level():

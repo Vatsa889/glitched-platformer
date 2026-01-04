@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://k8hjxryc2ncs"]
+
+[ext_resource type="Script" uid="uid://d0bm3ok4iyct8" path="res://start_menu.gd" id="1_jwbto"]
+[ext_resource type="Texture2D" uid="uid://pcidoko0xbe0" path="res://internet photos/game background.jpg" id="2_ia0g5"]
+[ext_resource type="FontFile" uid="uid://cew6h54gvdhnb" path="res://fonts/Pix32.ttf" id="3_vpdu5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ia0g5"]
+font = ExtResource("3_vpdu5")
+font_size = 64
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jwbto")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ia0g5")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -261.5
+offset_right = 261.5
+offset_bottom = 88.0
+grow_horizontal = 2
+text = "GLITCH PLATFORMER"
+label_settings = SubResource("LabelSettings_ia0g5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -33.0
+offset_right = 53.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="start game" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_vpdu5")
+theme_override_font_sizes/font_size = 32
+text = "START GAME"
+flat = true
+
+[node name="quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_vpdu5")
+theme_override_font_sizes/font_size = 32
+text = "QUIT"
+flat = true
+
+[connection signal="pressed" from="VBoxContainer/start game" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]

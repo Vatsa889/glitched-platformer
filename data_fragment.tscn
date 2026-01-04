@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://epbbi8bl1rbr"]
+
+[ext_resource type="Script" uid="uid://bcx53vnfuiphp" path="res://RAM.gd" id="1_r5gd1"]
+[ext_resource type="Texture2D" uid="uid://3yt1gksfhlbn" path="res://icon.svg" id="2_5k0vl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t0ajg"]
+radius = 26.0
+
+[node name="RAM" type="Area2D"]
+script = ExtResource("1_r5gd1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.9989318, 0.13931355, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_5k0vl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t0ajg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

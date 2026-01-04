@@ -9,7 +9,7 @@ const GRAVITY = 1200.0
 var glitch_battery = 100.0       # starts at 100% charge
 const DRAIN_RATE = 40.0          # drains in 2.5 seconds (100 / 40)
 const RECHARGE_FAST = 20.0       # normal recharge speed 
-const RECHARGE_SLOW = 5.0        # punishment speed if battery is < 10%
+const RECHARGE_SLOW = 8.0        # punishment speed if battery is < 10%
 var is_overheated = false        # if true, you are locked out of the ability
 var is_in_penalty = false        # tracks if we need to recharge slowly
 
@@ -27,8 +27,8 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 		perform_squash_stretch(0.6, 1.4) # character streches thin when jumping
 		
-	# glitch mechanic with the new battery
-	# we check if button is held AND if we are allowed to use it (not overheated)
+	## glitch mechanic with the new battery
+	## we check if button is held AND if we are allowed to use it (not overheated)
 	if Input.is_action_pressed("glitch") and not is_overheated:
 		# ACTIVE MODE
 		set_collision_mask_value(3, false) # turns off collision with Layer 3
