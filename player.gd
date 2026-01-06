@@ -10,7 +10,6 @@ const JUMP_VELOCITY = -500.0
 const GRAVITY = 1200.0
 const WALL_SLIDE_SPEED = 200.0 # max fall speed when hugging a wall
 
-
 ## glitch settings
 var glitch_battery = 100.0       # starts at 100% charge
 const DRAIN_RATE = 40.0          # drains in 2.5 seconds
@@ -23,6 +22,11 @@ var is_in_penalty = false        # slow recharge mode
 @onready var sprite = $Sprite2D
 @onready var battery_bar = $CanvasLayer/ProgressBar
 @onready var particles = $GlitchParticles
+
+func _ready():
+	# adding player to group so gates can find me
+	add_to_group("player")
+
 func _physics_process(delta):
 	## movement input
 	# calculated so wall jumps can override it later
@@ -43,24 +47,26 @@ func _physics_process(delta):
 	# jumping section
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
-			# Normal Floor Jump
+			# normal floor jump
 			velocity.y = JUMP_VELOCITY
 			perform_squash_stretch(0.6, 1.4)
 			
 		elif is_on_wall() and is_touching_safe_wall():
 			# wall jump
-			velocity.y = JUMP_VELOCITY # jump Up
+			velocity.y = JUMP_VELOCITY # jump up
 			# kick away from the wall 
 			velocity.x = get_wall_normal().x * SPEED 
 			perform_squash_stretch(0.7, 1.3)
 
-	# glitch mechanic
+	## glitch mechanic
 	var trying_to_glitch = Input.is_action_pressed("glitch") and not is_overheated
-	 # Check if the state actually CHANGED this frame
+	
+	# check if we just pressed or released the button
 	if trying_to_glitch != is_glitching_active:
 		is_glitching_active = trying_to_glitch
-		glitch_toggled.emit(is_glitching_active) #tells the gate to open
+		glitch_toggled.emit(is_glitching_active) # tells the gate to open/close
 		
+		# toggle visuals and collision
 		if is_glitching_active:
 			set_collision_mask_value(3, false)
 			sprite.modulate.a = 0.5
@@ -68,13 +74,16 @@ func _physics_process(delta):
 			set_collision_mask_value(3, true)
 			sprite.modulate.a = 1.0
 			particles.emitting = false
-		
-		# particle Logic
+
+	# handle the continuous drain or recharge
+	if is_glitching_active:
+		# particle logic
 		if velocity.length() > 10.0:
 			particles.emitting = true
 		else:
 			particles.emitting = false
 		
+		# drain battery while active
 		glitch_battery -= DRAIN_RATE * delta
 		
 		if glitch_battery < 10.0:
@@ -82,13 +91,10 @@ func _physics_process(delta):
 		
 		if glitch_battery <= 0:
 			glitch_battery = 0
-			is_overheated = true
+			is_overheated = true # this forces trying_to_glitch to false next frame
+			
 	else:
 		# recharge mode
-		set_collision_mask_value(3, true)
-		sprite.modulate.a = 1.0
-		particles.emitting = false
-		
 		if is_in_penalty:
 			glitch_battery += RECHARGE_SLOW * delta
 		else:
@@ -114,21 +120,21 @@ func _physics_process(delta):
 		var stylebox = battery_bar.get_theme_stylebox("fill")
 		
 		if is_overheated:
-			# red: Unusable/recharging from 0
+			# red: unusable/recharging from 0
 			stylebox.bg_color = Color.RED
 		elif glitch_battery < 10.0:
-			# yellow: low Battery
+			# yellow: low battery
 			stylebox.bg_color = Color.YELLOW
 		else:
 			# green: normal
 			stylebox.bg_color = Color(0.0, 0.73, 0.17)
 
 ## helper function
-# checks if the wall we are touching is on layer 2 (World)
+# checks if the wall we are touching is on layer 2 (world)
 func is_touching_safe_wall() -> bool:
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
-		# if the collider is on Layer 2, it will be seen as safe
+		# if the collider is on layer 2, it will be seen as safe
 		if collision.get_collider().get_collision_layer_value(2):
 			return true
 	return false
