@@ -83,7 +83,7 @@ func _physics_process(delta):
 		else:
 			particles.emitting = false
 		
-		# drain battery while active
+		# drains battery while active
 		glitch_battery -= DRAIN_RATE * delta
 		
 		if glitch_battery < 10.0:

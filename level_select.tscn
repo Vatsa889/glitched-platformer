@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://c06m3wrw2aeuk"]
+
+[ext_resource type="Script" uid="uid://n602bv2lkk64" path="res://level_select.gd" id="1_vomi7"]
+[ext_resource type="FontFile" uid="uid://cew6h54gvdhnb" path="res://fonts/Pix32.ttf" id="2_wevku"]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vomi7")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = -20.5
+offset_right = 224.0
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="level1btn" type="Button" parent="GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wevku")
+theme_override_font_sizes/font_size = 32
+text = "LEVEL 1"
+
+[node name="level2btn" type="Button" parent="GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wevku")
+theme_override_font_sizes/font_size = 32
+text = "LEVEL 2 (LOCKED)"
+
+[node name="BACKbtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wevku")
+theme_override_font_sizes/font_size = 32
+text = "BACK"
+
+[connection signal="pressed" from="GridContainer/level1btn" to="." method="_on_level_1_btn_pressed"]
+[connection signal="pressed" from="GridContainer/level2btn" to="." method="_on_level_2_btn_pressed"]
+[connection signal="pressed" from="GridContainer/BACKbtn" to="." method="_on_back_btn_pressed"]
