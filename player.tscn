@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dwehk8bwsy86i"]
+[gd_scene load_steps=10 format=3 uid="uid://dwehk8bwsy86i"]
 
 [ext_resource type="Script" uid="uid://csdd7n1gaawhs" path="res://player.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://3yt1gksfhlbn" path="res://icon.svg" id="2_i3pqv"]
-[ext_resource type="Texture2D" uid="uid://3yt1gksfhlbn" path="res://glitch platformer mac/icon.svg" id="3_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://3yt1gksfhlbn" path="res://icon.svg" id="3_i3pqv"]
 
 [sub_resource type="Gradient" id="Gradient_hqtel"]
 offsets = PackedFloat32Array(0, 0.9835294, 1)
@@ -39,6 +38,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
 collision_mask = 6
 script = ExtResource("1_onrkg")
 
@@ -50,7 +50,7 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_2hs0m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_i3pqv")
+texture = ExtResource("3_i3pqv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hqtel")

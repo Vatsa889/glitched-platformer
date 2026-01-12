@@ -3,22 +3,6 @@
 [ext_resource type="Script" uid="uid://df5wh3v3hnova" path="res://glitch_gate.gd" id="1_qrgq7"]
 [ext_resource type="Texture2D" uid="uid://cgo7bdhe5eo2p" path="res://photos/Game Art Door Sheet.png" id="2_720tg"]
 
-[sub_resource type="Animation" id="Animation_6qi3t"]
-resource_name = "open"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 11]
-}
-
 [sub_resource type="Animation" id="Animation_yi3vw"]
 length = 0.001
 tracks/0/type = "value"
@@ -47,6 +31,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [11, 0]
+}
+
+[sub_resource type="Animation" id="Animation_6qi3t"]
+resource_name = "open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 11]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8yl6v"]

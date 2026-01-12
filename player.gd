@@ -130,13 +130,21 @@ func _physics_process(delta):
 			stylebox.bg_color = Color(0.0, 0.73, 0.17)
 
 ## helper function
-# checks if the wall we are touching is on layer 2 (world)
+# checks if the wall being touched is on layer 2 (world)
 func is_touching_safe_wall() -> bool:
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
-		# if the collider is on layer 2, it will be seen as safe
-		if collision.get_collider().get_collision_layer_value(2):
+		var collider = collision.get_collider()
+		
+		# checks if it is a normal object (like a gate)
+		if collider.has_method("get_collision_layer_value"):
+			if collider.get_collision_layer_value(2):
+				return true
+				
+		# checks if it is the tilemap
+		elif collider is TileMapLayer or collider is TileMap:
 			return true
+			
 	return false
 
 ## polishing squash and stretch

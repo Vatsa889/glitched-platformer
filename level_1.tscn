@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cox071lcryca8"]
+[gd_scene load_steps=11 format=4 uid="uid://cox071lcryca8"]
 
 [ext_resource type="PackedScene" uid="uid://dwehk8bwsy86i" path="res://player.tscn" id="1_3hls8"]
 [ext_resource type="Texture2D" uid="uid://blxuitbpjjaib" path="res://photos/Sprite 0002 Game Art.png" id="1_rka8t"]
@@ -6,39 +6,66 @@
 [ext_resource type="PackedScene" uid="uid://epbbi8bl1rbr" path="res://data_fragment.tscn" id="3_hn12h"]
 [ext_resource type="PackedScene" uid="uid://c48jfpagnr33o" path="res://enemy.tscn" id="4_ihfcg"]
 [ext_resource type="PackedScene" uid="uid://dngkn38qldjlx" path="res://glitch_gate.tscn" id="6_5hph3"]
+[ext_resource type="PackedScene" uid="uid://oati51tdtrkr" path="res://glitch_floor.tscn" id="7_j7kpp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5hph3"]
 texture = ExtResource("1_rka8t")
 1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:1/0 = 0
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:1/0 = 0
 3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:1/0 = 0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:1/0 = 0
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:1/0 = 0
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:2/0 = 0
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:2/0 = 0
+8:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 10:2/0 = 0
+10:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 11:2/0 = 0
+11:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:3/0 = 0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:3/0 = 0
+6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:3/0 = 0
+7:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:3/0 = 0
+8:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 10:3/0 = 0
+10:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 11:3/0 = 0
+11:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:4/0 = 0
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:4/0 = 0
+4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_ihfcg"]
 physics_layer_0/collision_layer = 2
@@ -46,66 +73,19 @@ physics_layer_0/collision_mask = 0
 physics_layer_1/collision_layer = 4
 sources/0 = SubResource("TileSetAtlasSource_5hph3")
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hbghi"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hn12h"]
-size = Vector2(1961, 92)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihfcg"]
-size = Vector2(80.5, 226)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rka8t"]
-size = Vector2(80.5, 68)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3hls8"]
 size = Vector2(4116, 295.75)
 
 [node name="Level1" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAAFAAMAAAACAAEAAAAEAAMAAAACAAEAAAADAAMAAAACAAEAAAACAAMAAAACAAEAAAABAAMAAAACAAEAAAAAAAMAAAACAAEAAAD//wMAAAACAAEAAAD+/wMAAAACAAEAAAD9/wMAAAACAAEAAAD8/wMAAAACAAEAAAD7/wMAAAACAAEAAAD6/wMAAAACAAEAAAD5/wMAAAACAAEAAAD4/wMAAAACAAEAAAD3/wMAAAACAAEAAAD2/wMAAAACAAEAAAD1/wMAAAAGAAMAAAD0/wMAAAAIAAMAAADz/wMAAAACAAEAAADy/wMAAAACAAEAAADv/wIAAAAEAAIAAADv/wEAAAAEAAIAAADv/wAAAAAEAAIAAADu/wAAAAABAAIAAADu/wEAAAABAAIAAADu/wIAAAABAAIAAADx/wMAAAADAAEAAADw/wMAAAADAAEAAADv/wMAAAAGAAMAAADu/wMAAAAIAAMAAADt/wMAAAAHAAMAAADu////AAABAAEAAADv////AAAEAAEAAADs/wMAAAADAAEAAADr/wMAAAABAAEAAAAFAAQAAAADAAIAAAAEAAQAAAADAAIAAAADAAQAAAADAAIAAAACAAQAAAADAAIAAAABAAQAAAADAAIAAAAAAAQAAAADAAIAAAD//wQAAAADAAIAAAD+/wQAAAADAAIAAAD9/wQAAAADAAIAAAD8/wQAAAADAAIAAAD7/wQAAAADAAIAAAD6/wQAAAADAAIAAAD5/wQAAAADAAIAAAD4/wQAAAADAAIAAADr/wQAAAAIAAIAAADs/wQAAAADAAIAAADt/wQAAAADAAIAAADu/wQAAAADAAIAAADv/wQAAAADAAIAAADw/wQAAAADAAIAAADx/wQAAAADAAIAAADy/wQAAAADAAIAAADz/wQAAAADAAIAAAD0/wQAAAADAAIAAAD1/wQAAAADAAIAAAD2/wQAAAADAAIAAAD3/wQAAAADAAIAAAD0/wIAAAABAAEAAAD1/wIAAAAEAAEAAAA=")
 tile_set = SubResource("TileSet_ihfcg")
 
 [node name="Player" parent="." instance=ExtResource("1_3hls8")]
 position = Vector2(-86, 4)
-
-[node name="floor" type="StaticBody2D" parent="."]
-position = Vector2(-86, 4)
-collision_layer = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="floor"]
-position = Vector2(-400.49997, 299)
-scale = Vector2(1960.9998, 92)
-texture = SubResource("PlaceholderTexture2D_hbghi")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
-position = Vector2(-400.5, 299)
-shape = SubResource("RectangleShape2D_hn12h")
-
-[node name="wall" type="StaticBody2D" parent="."]
-position = Vector2(-86, 4)
-collision_layer = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="wall"]
-position = Vector2(-1283.9063, 140)
-scale = Vector2(80.18749, 225.99998)
-texture = SubResource("PlaceholderTexture2D_hbghi")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
-position = Vector2(-1284, 140)
-shape = SubResource("RectangleShape2D_ihfcg")
-
-[node name="wall2" type="StaticBody2D" parent="."]
-position = Vector2(-86, 4)
-collision_layer = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="wall2"]
-position = Vector2(-875, 219)
-scale = Vector2(80.18749, 68)
-texture = SubResource("PlaceholderTexture2D_hbghi")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="wall2"]
-position = Vector2(-875, 219)
-shape = SubResource("RectangleShape2D_rka8t")
+scale = Vector2(0.5, 0.5)
 
 [node name="KillZone" type="Area2D" parent="."]
 script = ExtResource("2_hbghi")
@@ -121,7 +101,11 @@ position = Vector2(-245, 186)
 position = Vector2(-1108, 158)
 
 [node name="GlitchGate" parent="." instance=ExtResource("6_5hph3")]
-position = Vector2(536, 257)
-scale = Vector2(10, 10)
+position = Vector2(530.00006, 240)
+scale = Vector2(5, 5)
+
+[node name="GlitchFloor" parent="." instance=ExtResource("7_j7kpp")]
+position = Vector2(635, 280)
+scale = Vector2(5, 5)
 
 [connection signal="body_entered" from="KillZone" to="KillZone" method="_on_body_entered"]
