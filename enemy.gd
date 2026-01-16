@@ -3,6 +3,8 @@ extends CharacterBody2D
 const SPEED = 100.0
 var direction = 1 # 1 is Right, -1 is Left
 
+@onready var sprite = $Sprite2D
+
 func _physics_process(delta):
 	# applies Gravity
 	if not is_on_floor():
@@ -11,6 +13,12 @@ func _physics_process(delta):
 	# check for walls or ledges to flip direction
 	if is_on_wall():
 		direction *= -1
+		
+		# sprite flipping
+	if direction > 0:
+		sprite.flip_h = false # Face Right (Default)
+	elif direction < 0:
+		sprite.flip_h = true  # Face Left (Flip it)
 		
 	# move
 	velocity.x = direction * SPEED
