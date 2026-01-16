@@ -16,9 +16,9 @@ func _physics_process(delta):
 		
 		# sprite flipping
 	if direction > 0:
-		sprite.flip_h = false # Face Right (Default)
+		sprite.flip_h = true # Face left (Default)
 	elif direction < 0:
-		sprite.flip_h = true  # Face Left (Flip it)
+		sprite.flip_h = false  # face right (Flip it)
 		
 	# move
 	velocity.x = direction * SPEED
