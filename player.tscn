@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://dwehk8bwsy86i"]
+[gd_scene load_steps=16 format=3 uid="uid://dwehk8bwsy86i"]
 
 [ext_resource type="Script" uid="uid://csdd7n1gaawhs" path="res://player.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://b0tdpafxxrkam" path="res://photos/player_sheet.png" id="2_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://3yt1gksfhlbn" path="res://icon.svg" id="3_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://cjmax0plhap6u" path="res://photos/Idle Proper Game Art.png" id="4_sweqy"]
+[ext_resource type="Texture2D" uid="uid://c7a03ljlt0obm" path="res://photos/Proper Running Animation (1).png" id="5_2hs0m"]
 
 [sub_resource type="Gradient" id="Gradient_hqtel"]
 offsets = PackedFloat32Array(0, 0.9835294, 1)
@@ -29,7 +30,7 @@ scale_curve = SubResource("CurveTexture_hqtel")
 color_ramp = SubResource("GradientTexture1D_sweqy")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
-size = Vector2(92, 130)
+size = Vector2(92, 141.5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3pqv"]
 bg_color = Color(0, 0.7262958, 0.16896853, 1)
@@ -37,6 +38,33 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="Animation" id="Animation_sweqy"]
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_sweqy")]
+}
 
 [sub_resource type="Animation" id="Animation_hqtel"]
 resource_name = "idle"
@@ -49,14 +77,28 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.53333336),
+"times": PackedFloat32Array(0, 1.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 4]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_sweqy")]
+}
 
-[sub_resource type="Animation" id="Animation_sweqy"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_i3pqv"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -64,16 +106,29 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [ExtResource("5_2hs0m")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2hs0m"]
 _data = {
 &"RESET": SubResource("Animation_sweqy"),
-&"idle": SubResource("Animation_hqtel")
+&"idle": SubResource("Animation_hqtel"),
+&"run": SubResource("Animation_i3pqv")
 }
 
 [node name="Player" type="CharacterBody2D"]
@@ -81,22 +136,23 @@ scale = Vector2(0.5, 0.5)
 collision_mask = 6
 script = ExtResource("1_onrkg")
 
-[node name="GlitchParticles" type="GPUParticles2D" parent="."]
-position = Vector2(-117.99999, -175.99997)
-scale = Vector2(0.19999999, 0.19999999)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-9.536743e-07, 7.6293945e-06)
+scale = Vector2(5, 5)
+texture = ExtResource("4_sweqy")
+hframes = 5
+region_rect = Rect2(8, 0, 136, 40)
+
+[node name="GlitchParticles" type="GPUParticles2D" parent="Sprite2D"]
+show_behind_parent = true
+position = Vector2(0, -5)
+scale = Vector2(0.039999995, 0.039999995)
 amount = 20
 texture = ExtResource("3_i3pqv")
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_2hs0m")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-9.536743e-07, 7.6293945e-06)
-scale = Vector2(5, 5)
-texture = ExtResource("2_i3pqv")
-hframes = 5
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-120, -161)
 shape = SubResource("RectangleShape2D_hqtel")
 
 [node name="Camera2D" type="Camera2D" parent="."]
