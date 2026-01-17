@@ -45,7 +45,7 @@ text = "LEVEL 1"
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_wevku")
 theme_override_font_sizes/font_size = 32
-text = "LEVEL 2 (LOCKED)"
+text = "LEVEL 2 (NOT FINISHED)"
 
 [node name="BACKbtn" type="Button" parent="GridContainer"]
 layout_mode = 2

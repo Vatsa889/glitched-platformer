@@ -6,15 +6,18 @@ var is_glitching_active = false
 var original_scale = Vector2(1, 1)
 
 ## hoverboard settings
-const MAX_SPEED = 500.0        # Top speed
-const ACCELERATION = 900.0     # How fast you speed up (lower = more "drift")
-const FRICTION = 600.0         # How fast you slow down when letting go
+const MAX_SPEED = 500.0        # top speed
+const ACCELERATION = 900.0     # how fast you speed up 
+const FRICTION = 600.0         # how fast you slow down when letting go
 const JUMP_VELOCITY = -500.0
 const GRAVITY = 1200.0
 
 ## weight mechanic (pressing the s key)
 const HEAVY_GRAVITY_MULT = 3.0 # gravity becomes 3x stronger while pressing the s key
 const MAX_FALL_SPEED = 1500.0
+
+## stair type thing
+const STEP_HEIGHT = 5.0 # how high (in pixels) you can auto-climb
 
 ## glitch settings
 var glitch_battery = 100.0       
@@ -27,7 +30,7 @@ var is_in_penalty = false
 ## player nodes
 @onready var sprite = $Sprite2D
 @onready var battery_bar = $CanvasLayer/ProgressBar
-@onready var particles = $Sprite2D/GlitchParticles 
+@onready var particles = $Sprite2D/GlitchParticles
 @onready var anim = $AnimationPlayer
 
 func _ready():
@@ -35,7 +38,7 @@ func _ready():
 	original_scale = sprite.scale
 
 func _physics_process(delta):
-	## 1. HOVERBOARD MOVEMENT (Momentum)
+	## hoverboard movement
 	var direction = Input.get_axis("move_left", "move_right")
 	
 	if direction:
@@ -51,7 +54,7 @@ func _physics_process(delta):
 		# tilt back to 0 (upright)
 		sprite.rotation = lerp_angle(sprite.rotation, 0, 10 * delta)
 
-	## 2. GRAVITY & WEIGHT MECHANIC
+	## gravity and weight mechanic
 	if not is_on_floor():
 		var current_gravity = GRAVITY
 		
@@ -75,7 +78,7 @@ func _physics_process(delta):
 			velocity.x = get_wall_normal().x * MAX_SPEED # kick off wall at full speed
 			perform_squash_stretch(0.7, 1.3)
 
-	## glitch mechanic (same as before)
+	## glitch mechanic
 	var trying_to_glitch = Input.is_action_pressed("glitch") and not is_overheated
 	
 	if trying_to_glitch != is_glitching_active:
@@ -109,10 +112,16 @@ func _physics_process(delta):
 			glitch_battery = 100
 			is_in_penalty = false
 		if is_overheated and glitch_battery >= 100: is_overheated = false
-
-	# physics application
+	
+	# handles small steps before moving
+	if is_on_floor() and direction != 0:
+		handle_step_up(direction)
+	
+	# move (only once per frame)
 	var was_on_floor = is_on_floor()
 	move_and_slide()
+	
+	# handles landing squash/stretch
 	if not was_on_floor and is_on_floor():
 		perform_squash_stretch(1.3, 0.7)
 
@@ -126,12 +135,11 @@ func _physics_process(delta):
 	
 	# decide which animation to play
 	if is_on_floor():
-		if abs(velocity.x) > 10: # If we are moving noticeably
+		if abs(velocity.x) > 10: # if we are moving noticeably
 			anim.play("run")
 		else:
 			anim.play("idle")
 	else:
-
 		if velocity.y < 0:
 			if anim.has_animation("jump"): anim.play("jump")
 			else: anim.play("run") 
@@ -139,7 +147,7 @@ func _physics_process(delta):
 			if anim.has_animation("fall"): anim.play("fall")
 			else: anim.play("run")
 			
-	# battery UI
+	# battery ui
 	if battery_bar:
 		battery_bar.value = glitch_battery
 		var stylebox = battery_bar.get_theme_stylebox("fill")
@@ -157,11 +165,27 @@ func is_touching_safe_wall() -> bool:
 			return true
 	return false
 
+# checks for small obstacles and lifts the player up
+func handle_step_up(dir_sign):
+	# look ahead a few pixels
+	var look_ahead = Vector2(sign(dir_sign) * 5.0, 0)
+	
+	# checks to see if a wall is being hit
+	if test_move(transform, look_ahead):
+		
+		# checks if there is no wall
+		var transform_step_up = transform.translated(Vector2(0, -STEP_HEIGHT))
+		
+		# checks if the player will move without hitting anything
+		if not test_move(transform_step_up, look_ahead):
+			# lifts player up
+			position.y -= STEP_HEIGHT
+
 func perform_squash_stretch(x_mult, y_mult):
 	var tween = create_tween()
-	# calculate the squashed size based on the ORIGINAL size
+	# calculate the squashed size based on the original size
 	var target_size = Vector2(original_scale.x * x_mult, original_scale.y * y_mult)
 	# switch to the squashed size
 	tween.tween_property(sprite, "scale", target_size, 0.05)
-	# switch back to the ORIGINAL size (instead of just "1.0")
+	# switch back to the original size (instead of just "1.0")
 	tween.tween_property(sprite, "scale", original_scale, 0.15)

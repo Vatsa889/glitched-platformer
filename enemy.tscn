@@ -1,30 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://c48jfpagnr33o"]
+[gd_scene load_steps=7 format=3 uid="uid://c48jfpagnr33o"]
 
 [ext_resource type="Script" uid="uid://bo8b1hjjmmw37" path="res://enemy.gd" id="1_4gyqm"]
-[ext_resource type="Texture2D" uid="uid://3yt1gksfhlbn" path="res://icon.svg" id="1_7k104"]
+[ext_resource type="Texture2D" uid="uid://d1skrpqojg6k2" path="res://photos/enemy 1.png" id="2_4gyqm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]
-size = Vector2(64, 64)
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
+size = Vector2(62, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qi2p4"]
-size = Vector2(71, 72)
+size = Vector2(98.5, 98)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epg4t"]
+size = Vector2(64, 45)
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_mask = 3
 script = ExtResource("1_4gyqm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.68027604, 0, 0.084109195, 1)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_7k104")
+position = Vector2(0, -91)
+scale = Vector2(3, 3)
+texture = ExtResource("2_4gyqm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_4gyqm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-81, -0.5)
+shape = SubResource("RectangleShape2D_iifgy")
 
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0.5, 0)
+position = Vector2(-0.25, 5)
 shape = SubResource("RectangleShape2D_qi2p4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-81, -0.5)
+shape = SubResource("RectangleShape2D_epg4t")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
